@@ -44,9 +44,10 @@ DB_diagram : https://bit.ly/3BMkeVJ <br>
 </tr>
  <tr>
    <td>주제 선정 및<br> 프로토타입 제작</td>
-   <td>사진 모으기 및<br> 코드 작성</td>
+   <td>데이터베이스 설계<br>및 코드 작성</td>
    <td>코드 작성 및<br> 작성된 코드 보완</td>
-   <td>코드 보완 및<br> 발표 준비</td>
+   <td>코드 작성 및<br> 작성된 코드 보완</td>
+   <td>코드 작성 및<br> 작성된 코드 보완</td>
    <td>발표 준비 및<br> 17시 발표/시연</td>
 </tr>
 </table>
