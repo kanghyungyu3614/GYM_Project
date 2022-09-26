@@ -23,7 +23,7 @@ DB_diagram : https://bit.ly/3BMkeVJ <br>
    <td><a href="https://github.com/000922">이태준<a/></td>
    <td>팀원</td>
    <td>페이지 작성</td>
-   <td>어떤 브랜치로 사용?</td>
+   <td>jun</td>
 </tr>
   <tr>
    <td><a href="https://github.com/Hinsang">인상<a/></td>
