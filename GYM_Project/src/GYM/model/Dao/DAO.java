@@ -29,7 +29,7 @@ public class DAO {
 		}
 	}
 	
-	// 메소드
+	// 메소드 //
 	public static DAO getInstance() {
 		return dao;
 	}
