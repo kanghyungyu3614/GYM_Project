@@ -16,19 +16,19 @@ DB_diagram : https://bit.ly/3BMkeVJ <br>
  <tr>
    <td><a href="https://github.com/kanghyungyu3614">강현규<a/></td>
    <td>팀장</td>
-   <td>랜딩페이지,어떤 페이지 작성</td>
+   <td>PT 예약 페이지 작성</td>
    <td>khan</td>
 </tr>
   <tr>
    <td><a href="https://github.com/000922">이태준<a/></td>
    <td>팀원</td>
-   <td>페이지 작성</td>
+   <td>바디프로필 페이지 작성</td>
    <td>jun</td>
 </tr>
   <tr>
    <td><a href="https://github.com/Hinsang">인상<a/></td>
    <td>팀원</td>
-   <td>페이지 작성</td>
+   <td>회원권 등록 페이지 작성</td>
    <td>insang</td>
 </tr>
 </table>
