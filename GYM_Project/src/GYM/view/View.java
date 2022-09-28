@@ -121,13 +121,13 @@ public class View {
 		while(true) {
 			System.out.println("\t   ☆ 회원관리페이지 ☆");
 			System.out.println("===================================");
-			System.out.println("1.출결관리 2.운동관리 3.pt회원관리 4.뒤로가기");
+			System.out.println("1.출결관리 2.pt회원관리 3.운동관리 4.뒤로가기");
 			
 			while(!scanner.hasNextInt()) { 
 				scanner.next();
 				System.out.println("\t   ☆ 회원관리페이지 ☆");
 				System.out.println("===================================");
-				System.out.println("1.출결관리 2.운동관리 3.pt회원관리 4.뒤로가기");
+				System.out.println("1.출결관리 2.pt회원관리 3.운동관리 4.뒤로가기");
 			}
 			
 			int btn4 = scanner.nextInt();
