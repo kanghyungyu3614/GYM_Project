@@ -32,7 +32,7 @@ public class MembershipDAO {
 	// 내용 추가 SQL 메소드 
 	public static MembershipDAO getInstance() {return dao;}
 	
-	//1. 내용추가 SQL 메소드
+	// 1. 내용추가 SQL 메소드
 	public boolean create(MembershipDTO mem_dto) {
 		String sql = "insert into membership values(null,?,?,?,?)";
 		try {
@@ -43,9 +43,11 @@ public class MembershipDAO {
 			ps.setString(4, mem_dto.getMem_comment());
 			ps.executeUpdate();
 			return true;	
-		} catch (Exception e) {return false;}
+		} catch (Exception e) {
+			return false;
+		}
 	}
-	//2. 내용 출력 SQL 메소드
+	// 2. 내용 출력 SQL 메소드
     public ArrayList<MembershipDTO> read(){
     	ArrayList<MembershipDTO> list = new ArrayList<>();
     	String sql = "select * from membership";
@@ -60,10 +62,27 @@ public class MembershipDAO {
 				rs.getString(4),
 				rs.getString(5));
 				list.add(mem_dto);
-				
 			}
 			return list;
 		} catch (Exception e) { return list;}
-    }	
+    }
+    
+    // 3. 내용 수정 SQL 메소드
+    public boolean update(MembershipDTO mem_dto) {
+    	String sql = "update membership set mem_name = ?, mem_start = ?, mem_end = ?, mem_comment = ? where mem_no = ?";
+    	try {
+    		ps = con.prepareStatement(sql);
+    		ps.setString(1, mem_dto.getMem_name());
+    		ps.setString(2, mem_dto.getMem_start());
+    		ps.setString(3, mem_dto.getMem_end());
+    		ps.setString(4, mem_dto.getMem_comment());
+    		ps.setInt(5, mem_dto.getMem_no());
+    		ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+    }
 	
 }
