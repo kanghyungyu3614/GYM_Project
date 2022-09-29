@@ -37,3 +37,4 @@ CREATE TABLE member_check (
   ck_date datetime
 );
 select * from gym_admin;
+select * from gym_admin;
