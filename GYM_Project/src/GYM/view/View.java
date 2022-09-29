@@ -271,6 +271,5 @@ public class View {
 	
 	
 	
-	
 	//read end
 }
