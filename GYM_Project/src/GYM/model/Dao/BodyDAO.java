@@ -30,9 +30,17 @@ public class BodyDAO {
 	}
 	
 	public static BodyDAO getInstance() { return dao; }
-	
-	// 1
 
+	/*public boolean profile (BodyDTO bodyDTO) {
+		
+		try {
+			
+			
+		}catch (Exception e) { }
+	}
+	
+	// 1 */
+	
 	
 
 	
