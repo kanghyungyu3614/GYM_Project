@@ -37,3 +37,7 @@ CREATE TABLE member_check (
   ck_date datetime
 );
 select * from gym_admin;
+<<<<<<< HEAD
+=======
+select * from gym_admin;
+>>>>>>> refs/remotes/origin/khan

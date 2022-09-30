@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import GYM.controller.Controller;
 import GYM.controller.MembershipController;
+import GYM.controller.PtMemberController;
 import GYM.model.Dto.MembershipDTO;
+import GYM.model.Dto.PtMemberDTO;
 
 public class View {
 	
@@ -13,7 +15,7 @@ public class View {
 	//컨트롤러 추가 시작
 	Controller control = new Controller();
 	MembershipController memcontrol = new MembershipController();
-	
+	PtMemberController ptmemcontrol= new PtMemberController();
 	
 	
 	//컨트롤러 추가 끝
@@ -126,6 +128,17 @@ public class View {
 				if(result) { System.out.println("회원등록이 완료되었습니다!!"); }
 				else if(result == false) { System.out.println("회원등록 실패!!"); }
 			} else if(btn3 == 2) {
+				System.out.println("이름을 입력해주세요. : ");
+				String pt_name = scanner.next();
+				System.out.println("전화번호를 입력해주세요. : ");
+				String pt_phone = scanner.next();
+				System.out.println("등록날짜를 입력해주세요. : ");
+				String pt_date = scanner.next();
+				boolean result = ptMemberCreate(pt_name,pt_phone,pt_date);
+				if(result) {
+					System.out.println("등록이 완료되었습니다.");
+				}
+				else {System.out.println("등록이 실패했습니다.");}				
 				
 			} else if(btn3 == 3) {
 				
@@ -193,7 +206,7 @@ public class View {
 				} 
 				
 			} else if(btn4 == 2) {
-				
+				ptMemRead();
 			} else if(btn4 == 3) {
 				
 			} else if(btn4 == 4) {
@@ -206,8 +219,9 @@ public class View {
 	public boolean memCreate(String mem_name, String mem_start, String mem_end, String mem_comment) {		
 		return memcontrol.create(mem_name, mem_start, mem_end, mem_comment);
 	}
-	
-	
+	public boolean ptMemberCreate(String pt_name,String pt_phone,String pt_date) {
+		return ptmemcontrol.create(pt_name,pt_phone,pt_date);
+	}
 	
 	
 	
@@ -273,7 +287,16 @@ public class View {
 			System.out.println(dto.getMem_comment());
 		}
 	}
-	
+	public void ptMemRead() {
+		ArrayList<PtMemberDTO> pt_mem_list = ptmemcontrol.read();
+		System.out.println("회원번호\t회원이름\t전화번호\t     등록날짜");
+		for(PtMemberDTO dto : pt_mem_list) {
+			System.out.print(dto.getPt_no()+"\t");
+			System.out.print(dto.getPt_name()+"\t");
+			System.out.print(dto.getPt_phone()+"  ");
+			System.out.println(dto.getPt_date()+"\t");
+		}	
+	}
 	
 	
 	
