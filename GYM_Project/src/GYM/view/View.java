@@ -3,6 +3,7 @@ package GYM.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import GYM.controller.BodyController;
 import GYM.controller.Controller;
 import GYM.controller.MembershipController;
 import GYM.controller.PtMemberController;
@@ -17,6 +18,7 @@ public class View {
 	MembershipController memcontrol = new MembershipController();
 	PtMemberController ptmemcontrol= new PtMemberController();
 	
+	BodyController bodycontrol = new BodyController();
 	
 	//컨트롤러 추가 끝
 	public static void main(String[] args) {
@@ -140,8 +142,20 @@ public class View {
 				}
 				else {System.out.println("등록이 실패했습니다.");}				
 				
-			} else if(btn3 == 3) {
-				
+			} else if(btn3 == 3) { 
+				System.out.println("이름을 입력해주세요. : ");
+				String body_name = scanner.next();
+				System.out.println("날짜를 지정해 주세요. : ");
+				String body_date = scanner.next();
+				System.out.println("장소를 지정해 주세요. : ");
+				String body_place = scanner.next();
+				System.out.println("특이사항을 알려주세요. : ");
+				String body_comment = scanner.next();
+				boolean result = bodyReservationCreate(body_name,body_date,body_place,body_comment);
+				if(result) {
+					System.out.println("등록이 완료되었습니다.");
+				}
+				else {System.out.println("등록이 실패했습니다.");}		
 			} else if(btn3 == 4) {
 				break;
 			}
@@ -223,16 +237,20 @@ public class View {
 				break;
 			}
 		}
-		
+		 
 	}
 	//create start
 	public boolean memCreate(String mem_name, String mem_start, String mem_end, String mem_comment) {		
 		return memcontrol.create(mem_name, mem_start, mem_end, mem_comment);
 	}
+	
 	public boolean ptMemberCreate(String pt_name,String pt_phone,String pt_date) {
 		return ptmemcontrol.create(pt_name,pt_phone,pt_date);
 	}
 	
+	public boolean bodyReservationCreate( String body_name, String body_date, String body_place, String body_comment) {
+		return bodycontrol.create( body_name, body_date, body_place, body_comment);
+	}
 	
 	
 	
