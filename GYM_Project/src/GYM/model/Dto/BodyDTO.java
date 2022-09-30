@@ -3,15 +3,17 @@ package GYM.model.Dto;
 public class BodyDTO {
 	private int body_no;
 	private String body_name;
+	private String body_date;
 	private String body_place;
 	private String body_comment;
 	
 	public BodyDTO() {}
 
-	public BodyDTO(int body_no, String body_name, String body_place, String body_comment) {
+	public BodyDTO(int body_no, String body_name, String body_date, String body_place, String body_comment) {
 		super();
 		this.body_no = body_no;
 		this.body_name = body_name;
+		this.body_date = body_date;
 		this.body_place = body_place;
 		this.body_comment = body_comment;
 	}
@@ -31,7 +33,16 @@ public class BodyDTO {
 	public void setBody_name(String body_name) {
 		this.body_name = body_name;
 	}
+	
+	public String getBody_date() {
+		return body_date;
+	}
 
+	public void setBody_date(String body_date) {
+		this.body_date = body_date;
+	}
+	
+	
 	public String getBody_place() {
 		return body_place;
 	}
