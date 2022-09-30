@@ -17,7 +17,14 @@ public class MembershipController {
 		
 	}
 	
+	public boolean update(int mem_no, String mem_name, String mem_start, String mem_end, String mem_comment) {
+		MembershipDTO mem_dto = new MembershipDTO(mem_no, mem_name, mem_start, mem_end, mem_comment);
+		return MembershipDAO.getInstance().update(mem_dto);
+	}
 	
+	public boolean delete(int mem_no) {
+		return MembershipDAO.getInstance().delete(mem_no);
+	}
 	
 	
 	

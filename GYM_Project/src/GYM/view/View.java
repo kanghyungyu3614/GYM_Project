@@ -124,9 +124,9 @@ public class View {
 				String mem_comment = scanner.next();
 				scanner.nextLine();
 				
-				boolean result = memCreate(mem_name,mem_start,mem_end,mem_comment);
-				if(result) {}
-				else {}
+				boolean result = memCreate(mem_name, mem_start, mem_end, mem_comment);
+				if(result) { System.out.println("회원등록이 완료되었습니다!!"); }
+				else if(result == false) { System.out.println("회원등록 실패!!"); }
 			} else if(btn3 == 2) {
 				System.out.println("이름을 입력해주세요. : ");
 				String pt_name = scanner.next();
@@ -167,6 +167,54 @@ public class View {
 			
 			if(btn4 == 1) {
 				memRead();
+				
+				System.out.println("1.수정하기 2.삭제하기 3.뒤로가기");
+				
+				while(!scanner.hasNextInt()) { 
+					scanner.next();				
+					System.out.println("1.로그인");
+				}
+				
+				int btn5 = scanner.nextInt();
+				
+				if(btn5 == 1) {
+					System.out.println("수정할 번호를 입력하세요 : ");
+					
+					while(!scanner.hasNextInt()) { 
+						scanner.next();				
+						System.out.println("수정할 번호를 입력하세요 : ");
+					}
+					
+					int mem_no = scanner.nextInt();
+					System.out.println("이름을 입력해주세요. : ");
+					String mem_name = scanner.next();
+					System.out.println("시작날짜를 입력해주세요. : ");
+					String mem_start = scanner.next();
+					System.out.println("마감날짜를 입력해주세요. : ");
+					String mem_end = scanner.next();
+					System.out.println("특이사항을 입력해주세요. : ");
+					String mem_comment = scanner.next();
+					scanner.nextLine();
+					
+					boolean result = memUpdate(mem_no, mem_name, mem_start, mem_end, mem_comment);
+					
+					if(result == true) {
+						System.out.println("회원수정이 완료되었습니다!!");
+					} else if(result == false){
+						System.out.println("회원수정 실패!!");
+					}
+				} else if(btn5 == 2) {
+					System.out.println("삭제할 번호를 입력하세요 : ");
+					int mem_no = scanner.nextInt();
+					boolean result = memDelete(mem_no);
+					
+					if(result == true) {
+						System.out.println("회원삭제가 완료되었습니다!!");
+					} else if(result == false){
+						System.out.println("회원삭제 실패!!");
+					}
+				}
+				
 			} else if(btn4 == 2) {
 				ptMemRead();
 			} else if(btn4 == 3) {
@@ -178,8 +226,8 @@ public class View {
 		
 	}
 	//create start
-	public boolean memCreate(String mem_name,String mem_start,String mem_end,String mem_comment) {		
-		return memcontrol.create(mem_name,mem_start,mem_end,mem_comment);
+	public boolean memCreate(String mem_name, String mem_start, String mem_end, String mem_comment) {		
+		return memcontrol.create(mem_name, mem_start, mem_end, mem_comment);
 	}
 	public boolean ptMemberCreate(String pt_name,String pt_phone,String pt_date) {
 		return ptmemcontrol.create(pt_name,pt_phone,pt_date);
@@ -219,6 +267,24 @@ public class View {
 	
 	
 	//create end
+	
+	
+	// update start
+	public boolean memUpdate(int mem_no, String mem_name, String mem_start, String mem_end, String mem_comment ) {
+		return memcontrol.update(mem_no, mem_name, mem_start, mem_end, mem_comment );
+	}
+	// update end
+	
+	
+	// delete start
+	
+	public boolean memDelete(int mem_no) {
+		return memcontrol.delete(mem_no);
+	}
+	
+	// delete end
+	
+	
 	//read start
 	public void memRead() {
 		ArrayList<MembershipDTO> mem_list = memcontrol.read();
