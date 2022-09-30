@@ -32,7 +32,6 @@ public class BodyDAO {
 	public static BodyDAO getInstance() { return dao; }
 
 	/*public boolean profile (BodyDTO bodyDTO) {
-		
 		try {
 			
 			
