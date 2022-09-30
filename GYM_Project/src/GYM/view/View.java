@@ -237,7 +237,7 @@ public class View {
 				break;
 			}
 		}
-		
+		 
 	}
 	//create start
 	public boolean memCreate(String mem_name, String mem_start, String mem_end, String mem_comment) {		
