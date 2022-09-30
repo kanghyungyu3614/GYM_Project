@@ -22,6 +22,9 @@ public class MembershipController {
 		return MembershipDAO.getInstance().update(mem_dto);
 	}
 	
+	public boolean delete(int mem_no) {
+		return MembershipDAO.getInstance().delete(mem_no);
+	}
 	
 	
 	

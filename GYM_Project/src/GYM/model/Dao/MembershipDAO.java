@@ -84,5 +84,18 @@ public class MembershipDAO {
 			return false;
 		}
     }
+    
+    public boolean delete(int mem_no) {
+    	String sql = "delete from membership where mem_no = ?";
+    	try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, mem_no);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e);
+			return false;
+		}
+    }
 	
 }

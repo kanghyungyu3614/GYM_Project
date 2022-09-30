@@ -186,11 +186,21 @@ public class View {
 					boolean result = memUpdate(mem_no, mem_name, mem_start, mem_end, mem_comment);
 					
 					if(result == true) {
-						System.out.println("회원 수정이 완료되었습니다!!");
+						System.out.println("회원수정이 완료되었습니다!!");
 					} else if(result == false){
-						System.out.println("회원등록 실패!!");
+						System.out.println("회원수정 실패!!");
 					}
-				} 
+				} else if(btn5 == 2) {
+					System.out.println("삭제할 번호를 입력하세요 : ");
+					int mem_no = scanner.nextInt();
+					boolean result = memDelete(mem_no);
+					
+					if(result == true) {
+						System.out.println("회원삭제가 완료되었습니다!!");
+					} else if(result == false){
+						System.out.println("회원삭제 실패!!");
+					}
+				}
 				
 			} else if(btn4 == 2) {
 				
@@ -254,9 +264,9 @@ public class View {
 	
 	// delete start
 	
-//	public boolean memDelete(int mem_no) {
-//		return memcontrol.delete(mem_no);
-//	}
+	public boolean memDelete(int mem_no) {
+		return memcontrol.delete(mem_no);
+	}
 	
 	// delete end
 	
