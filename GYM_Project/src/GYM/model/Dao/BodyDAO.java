@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import GYM.model.Dto.BodyDTO;
 
 public class BodyDAO {
 	// 필드
@@ -25,5 +28,18 @@ public class BodyDAO {
 			System.out.println("DB오류 : " + e);
 		}
 	}
-}
+	
+	public static BodyDAO getInstance() { return dao; }
+	
+	// 1
+
+	
+
+	
+	
+	
+	
+	
+	
+} // class end
  
