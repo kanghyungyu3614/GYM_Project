@@ -2,12 +2,15 @@ drop database if exists GYM_Project;
 create database GYM_Project;
 use GYM_Project;
 drop table if exists gym_admin;
+drop table if exists gym_regist;
 
-CREATE TABLE gym_admin (
-  admin_no int PRIMARY KEY AUTO_INCREMENT,
-  admin_id varchar(20),
-  admin_pw varchar(20)
+CREATE TABLE gym_regist (
+  regist_no int PRIMARY KEY AUTO_INCREMENT,
+  regist_id varchar(20) UNIQUE,
+  regist_pw varchar(20)
 );
+
+insert into gym_regist values(1, 'admin', 'admin');
 
 CREATE TABLE pt_member (
   pt_no int PRIMARY KEY AUTO_INCREMENT,
@@ -37,4 +40,5 @@ CREATE TABLE member_check (
   ck_name varchar(10),
   ck_date datetime
 );
-select * from gym_admin;
+
+select * from gym_regist;
