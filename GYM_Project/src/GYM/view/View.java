@@ -25,32 +25,39 @@ public class View {
 		
 		View view = new View();
 		
-		view.regist();
 		view.menu();
 		
 	}
 	
+	// 회원가입
 	void regist() {
-		String admin_id = "admin";
-		String admin_pw = "admin";
 		
-		control.regist(admin_id, admin_pw);
-		return;
+		System.out.println("아이디를 입력해주세요 : ");
+		String id = scanner.next();
+		System.out.println("패스워드를 입력해주세요 : ");
+		String pw = scanner.next();
+		boolean result = control.regist(id, pw);
+		
+		if(result == true) {
+			System.out.println("회원가입에 성공했습니다!!");
+		} else if(result == false) {
+			System.out.println("회원가입에 실패했습니다!!");
+		}
 	}
 	
 	void menu() {
 		
 		while( true ) {
-			System.out.println("1.로그인");
+			System.out.println("1.로그인 2.회원가입");
 			
 			while(!scanner.hasNextInt()) { 
 				scanner.next();				
-				System.out.println("1.로그인");
+				System.out.println("1.로그인 2.회원가입");
 			}
 			
 			int btn = scanner.nextInt();
 			
-			if(btn == 1) {
+			if(btn == 1) { // 로그인
 				
 				System.out.println("아이디를 입력하세요 : ");
 				String id = scanner.next();
@@ -58,8 +65,7 @@ public class View {
 				String pw = scanner.next();
 				
 				int result = login(id, pw);
-				System.out.println(result);
-				if(result == 1) {
+				if(result == 1 || result == 4) { // 일단 admin, 일반회원 로그인 묶어둠
 					System.out.println("로그인에 성공했습니다!!");
 					admin();
 				} else if (result == 2) {
@@ -67,6 +73,12 @@ public class View {
 				} else if (result == 3) {
 					System.out.println("존재하지 않는 아이디입니다!!");
 				}
+			} else if(btn == 2) {
+				
+				View view = new View();
+				
+				view.regist();
+				
 			}
 		}
 		
