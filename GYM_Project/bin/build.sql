@@ -27,6 +27,7 @@ CREATE TABLE membership (
 CREATE TABLE body (
   body_no int PRIMARY KEY AUTO_INCREMENT,
   body_name varchar(10),
+  body_date date,
   body_place varchar(10),
   body_comment varchar(15)
 );
