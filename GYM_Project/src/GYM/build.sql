@@ -5,9 +5,9 @@ drop table if exists gym_admin;
 drop table if exists gym_regist;
 
 CREATE TABLE gym_regist (
-  admin_no int PRIMARY KEY AUTO_INCREMENT,
-  admin_id varchar(20) unique,
-  admin_pw varchar(20)
+  regist_no int PRIMARY KEY AUTO_INCREMENT,
+  regist_id varchar(20) UNIQUE,
+  regist_pw varchar(20)
 );
 
 insert into gym_regist values(1, 'admin', 'admin');
