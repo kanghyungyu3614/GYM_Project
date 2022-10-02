@@ -25,32 +25,39 @@ public class View {
 		
 		View view = new View();
 		
-		view.regist();
 		view.menu();
 		
 	}
 	
+	// 회원가입
 	void regist() {
-		String admin_id = "admin";
-		String admin_pw = "admin";
 		
-		control.regist(admin_id, admin_pw);
-		return;
+		System.out.println("아이디를 입력해주세요 : ");
+		String id = scanner.next();
+		System.out.println("패스워드를 입력해주세요 : ");
+		String pw = scanner.next();
+		boolean result = control.regist(id, pw);
+		
+		if(result == true) {
+			System.out.println("회원가입에 성공했습니다!!");
+		} else if(result == false) {
+			System.out.println("회원가입에 실패했습니다!!");
+		}
 	}
 	
 	void menu() {
 		
 		while( true ) {
-			System.out.println("1.로그인");
+			System.out.println("1.로그인 2.회원가입");
 			
 			while(!scanner.hasNextInt()) { 
 				scanner.next();				
-				System.out.println("1.로그인");
+				System.out.println("1.로그인 2.회원가입");
 			}
 			
 			int btn = scanner.nextInt();
 			
-			if(btn == 1) {
+			if(btn == 1) { // 로그인
 				
 				System.out.println("아이디를 입력하세요 : ");
 				String id = scanner.next();
@@ -58,8 +65,7 @@ public class View {
 				String pw = scanner.next();
 				
 				int result = login(id, pw);
-				System.out.println(result);
-				if(result == 1) {
+				if(result == 1 || result == 4) { // 일단 admin, 일반회원 로그인 묶어둠
 					System.out.println("로그인에 성공했습니다!!");
 					admin();
 				} else if (result == 2) {
@@ -67,6 +73,12 @@ public class View {
 				} else if (result == 3) {
 					System.out.println("존재하지 않는 아이디입니다!!");
 				}
+			} else if(btn == 2) {
+				
+				View view = new View();
+				
+				view.regist();
+				
 			}
 		}
 		
@@ -229,8 +241,53 @@ public class View {
 					}
 				}
 				
-			} else if(btn4 == 2) {
+			} else if(btn4 == 2) { //ptMemberRead
 				ptMemRead();
+				
+				System.out.println("1.수정하기 2.삭제하기 3.뒤로가기");
+				
+				while(!scanner.hasNextInt()) { 
+					scanner.next();				
+					System.out.println("1.로그인");
+				}
+				
+				int btn5 = scanner.nextInt();
+				
+				if(btn5 == 1) {
+					System.out.println("수정할 번호를 입력하세요 : ");
+					
+					while(!scanner.hasNextInt()) { 
+						scanner.next();				
+						System.out.println("수정할 번호를 입력하세요 : ");
+					}
+					
+					int pt_no = scanner.nextInt();
+					System.out.println("이름을 입력해주세요. : ");
+					String pt_name = scanner.next();
+					System.out.println("전화번호를 입력해주세요. : ");
+					String pt_phone = scanner.next();
+					System.out.println("등록날짜를 입력해주세요. : ");
+					String pt_date = scanner.next();
+					scanner.nextLine();
+
+					boolean result = ptMemUpdate(pt_no,pt_name,pt_phone,pt_date);
+					
+					if(result == true) {
+						System.out.println("회원수정이 완료되었습니다!!");
+					} else if(result == false){
+						System.out.println("회원수정 실패!!");
+					}
+				} else if(btn5 == 2) {
+					System.out.println("삭제할 번호를 입력하세요 : ");
+					int pt_no = scanner.nextInt();
+					boolean result = ptMemDelete(pt_no);
+					
+					if(result == true) {
+						System.out.println("회원삭제가 완료되었습니다!!");
+					} else if(result == false){
+						System.out.println("회원삭제 실패!!");
+					}
+				}
 			} else if(btn4 == 3) {
 				
 			} else if(btn4 == 4) {
@@ -291,6 +348,11 @@ public class View {
 	public boolean memUpdate(int mem_no, String mem_name, String mem_start, String mem_end, String mem_comment ) {
 		return memcontrol.update(mem_no, mem_name, mem_start, mem_end, mem_comment );
 	}
+	
+	public boolean ptMemUpdate(int pt_no,String pt_name,String pt_phone, String pt_date) {
+		return ptmemcontrol.update(pt_no,pt_name,pt_phone,pt_date);
+	}
+	
 	// update end
 	
 	
@@ -300,6 +362,9 @@ public class View {
 		return memcontrol.delete(mem_no);
 	}
 	
+	public boolean ptMemDelete(int pt_no) {
+		return ptmemcontrol.delete(pt_no);
+	}
 	// delete end
 	
 	

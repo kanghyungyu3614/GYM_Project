@@ -19,5 +19,14 @@ public class PtMemberController {
 		return PtMemberDAO.getInstance().read();
 		
 	}
+	
+	public boolean update(int pt_no, String pt_name, String pt_phone, String pt_date) {
+		PtMemberDTO pt_dto = new PtMemberDTO(pt_no, pt_name, pt_phone, pt_date);
+		return PtMemberDAO.getInstance().update(pt_dto);
+	}
+	
+	public boolean delete(int pt_no) {
+		return PtMemberDAO.getInstance().delete(pt_no);
+	}
 
 }
