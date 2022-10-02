@@ -41,4 +41,8 @@ CREATE TABLE member_check (
   ck_date datetime
 );
 
+<<<<<<< HEAD
 select * from gym_regist;
+=======
+select * from gym_regist;
+>>>>>>> branch 'main' of https://github.com/kanghyungyu3614/GYM_Project

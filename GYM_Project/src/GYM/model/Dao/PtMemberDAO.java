@@ -65,7 +65,36 @@ public class PtMemberDAO {
 				return list;
 			} catch (Exception e) { return list;}
 	    }
-		
+	    // 3. 내용 수정 SQL 메소드
+	    public boolean update(PtMemberDTO pt_dto) {
+	    	String sql = "update pt_member set pt_name = ?, pt_phone = ?, pt_date = ? where pt_no = ?";
+	    	try {
+	    		ps = con.prepareStatement(sql);
+	    		ps.setString(1, pt_dto.getPt_name());
+	    		ps.setString(2, pt_dto.getPt_phone());
+	    		ps.setString(3, pt_dto.getPt_date());
+	    		ps.setInt(4, pt_dto.getPt_no());
+	    		ps.executeUpdate();
+				return true;
+			} catch (Exception e) {
+				System.out.println(e);
+				return false;
+			}
+	    }
+	    
+	    // 4. 내용 삭제 SQL 메소드
+	    public boolean delete(int pt_no) {
+	    	String sql = "delete from pt_member where pt_no = ?";
+	    	try {
+				ps = con.prepareStatement(sql);
+				ps.setInt(1, pt_no);
+				ps.executeUpdate();
+				return true;
+			} catch (Exception e) {
+				System.out.println(e);
+				return false;
+			}
+	    }
 		
 		
 		
