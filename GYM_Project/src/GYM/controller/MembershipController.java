@@ -14,7 +14,6 @@ public class MembershipController {
 	
 	public ArrayList<MembershipDTO> read(){
 		return MembershipDAO.getInstance().read();
-		
 	}
 	
 	public boolean update(int mem_no, String mem_name, String mem_start, String mem_end, String mem_comment) {
@@ -25,12 +24,5 @@ public class MembershipController {
 	public boolean delete(int mem_no) {
 		return MembershipDAO.getInstance().delete(mem_no);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

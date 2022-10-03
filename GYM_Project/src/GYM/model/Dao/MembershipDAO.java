@@ -47,6 +47,7 @@ public class MembershipDAO {
 			return false;
 		}
 	}
+	
 	// 2. 내용 출력 SQL 메소드
     public ArrayList<MembershipDTO> read(){
     	ArrayList<MembershipDTO> list = new ArrayList<>();
@@ -64,7 +65,7 @@ public class MembershipDAO {
 				list.add(mem_dto);
 			}
 			return list;
-		} catch (Exception e) { return list;}
+		} catch (Exception e) { return list; }
     }
     
     // 3. 내용 수정 SQL 메소드

@@ -7,8 +7,10 @@ import GYM.controller.BodyController;
 import GYM.controller.Controller;
 import GYM.controller.MembershipController;
 import GYM.controller.PtMemberController;
+import GYM.controller.SuchController;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
+import GYM.model.Dto.SuchDTO;
 
 public class View {
 	
@@ -16,9 +18,9 @@ public class View {
 	//컨트롤러 추가 시작
 	Controller control = new Controller();
 	MembershipController memcontrol = new MembershipController();
-	PtMemberController ptmemcontrol= new PtMemberController();
-	
+	PtMemberController ptmemcontrol = new PtMemberController();
 	BodyController bodycontrol = new BodyController();
+	SuchController suchcontrol = new SuchController();
 	
 	//컨트롤러 추가 끝
 	public static void main(String[] args) {
@@ -65,13 +67,16 @@ public class View {
 				String pw = scanner.next();
 				
 				int result = login(id, pw);
-				if(result == 1 || result == 4) { // 일단 admin, 일반회원 로그인 묶어둠
+				if(result == 1) {
 					System.out.println("로그인에 성공했습니다!!");
-					admin();
+					user();
 				} else if (result == 2) {
 					System.out.println("패스워드가 일치하지 않습니다!!");
 				} else if (result == 3) {
 					System.out.println("존재하지 않는 아이디입니다!!");
+				} else if (result == 4) {
+					System.out.println("로그인에 성공했습니다!!");
+					admin();
 				}
 			} else if(btn == 2) {
 				
@@ -251,6 +256,30 @@ public class View {
 		}
 		 
 	}
+	
+	void user() {
+		
+		while(true) {
+			System.out.println("1.일정조회 2.마이페이지 3.로그아웃");
+			
+			while(!scanner.hasNextInt()) { 
+				scanner.next();				
+				System.out.println("1.일정조회 2.마이페이지 3.로그아웃");
+			}
+			
+			int btn2 = scanner.nextInt();
+			
+			if(btn2 == 1) {
+				such();
+			} else if(btn2 == 2) {
+				management();
+			} else if(btn2 == 3) {
+				break;
+			}
+		}
+		
+	}
+	
 	//create start
 	public boolean memCreate(String mem_name, String mem_start, String mem_end, String mem_comment) {		
 		return memcontrol.create(mem_name, mem_start, mem_end, mem_comment);
@@ -337,53 +366,22 @@ public class View {
 			System.out.println(dto.getPt_date()+"\t");
 		}	
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void such() {
+		ArrayList<SuchDTO> such_list = suchcontrol.read();
+		for(SuchDTO dto : such_list) {
+			System.out.println("회원권");
+			System.out.print("시작일 : ");
+			System.out.println(dto.getMem_start());
+			System.out.print("종료일 : ");
+			System.out.println(dto.getMem_end());
+			System.out.println("PT");
+			System.out.print("시작일 : ");
+			System.out.print(dto.getPt_date()+"\t");
+			System.out.println("바디프로필");
+			System.out.println("예약일 :");
+			System.out.println(dto.getBody_date());
+		}
+	}
 	
 	
 	

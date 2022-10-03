@@ -31,7 +31,7 @@ public class RegistDAO {
 		}
 	}
 	
-	// 메소드 //
+	// 메소드
 	public static RegistDAO getInstance() {
 		return dao;
 	}
