@@ -8,8 +8,10 @@ import GYM.controller.Controller;
 import GYM.controller.MembershipController;
 import GYM.controller.PtMemberController;
 import GYM.controller.SuchController;
+import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
+import GYM.model.Dto.RegistDTO;
 import GYM.model.Dto.SuchDTO;
 
 public class View {
@@ -21,6 +23,10 @@ public class View {
 	PtMemberController ptmemcontrol = new PtMemberController();
 	BodyController bodycontrol = new BodyController();
 	SuchController suchcontrol = new SuchController();
+	String name;
+	String id;
+	String pw;
+	String login_name;
 	
 	//컨트롤러 추가 끝
 	public static void main(String[] args) {
@@ -34,11 +40,13 @@ public class View {
 	// 회원가입
 	void regist() {
 		
+		System.out.println("이름을 입력해주세요 : ");
+		String name = scanner.next();
 		System.out.println("아이디를 입력해주세요 : ");
 		String id = scanner.next();
 		System.out.println("패스워드를 입력해주세요 : ");
 		String pw = scanner.next();
-		boolean result = control.regist(id, pw);
+		boolean result = control.regist(name, id, pw);
 		
 		if(result == true) {
 			System.out.println("회원가입에 성공했습니다!!");
@@ -53,20 +61,21 @@ public class View {
 			System.out.println("1.로그인 2.회원가입");
 			
 			while(!scanner.hasNextInt()) { 
-				scanner.next();				
+				scanner.next();
 				System.out.println("1.로그인 2.회원가입");
 			}
 			
 			int btn = scanner.nextInt();
 			
 			if(btn == 1) { // 로그인
-				
 				System.out.println("아이디를 입력하세요 : ");
-				String id = scanner.next();
+				id = scanner.next();
 				System.out.println("패스워드를 입력하세요 : ");
-				String pw = scanner.next();
+				pw = scanner.next();
 				
 				int result = login(id, pw);
+				registRead();
+				loginSave(login_name);
 				if(result == 1) {
 					System.out.println("로그인에 성공했습니다!!");
 					user();
@@ -260,24 +269,32 @@ public class View {
 	void user() {
 		
 		while(true) {
-			System.out.println("1.일정조회 2.마이페이지 3.로그아웃");
+			System.out.println("1.일정조회 2.로그아웃");
 			
 			while(!scanner.hasNextInt()) { 
 				scanner.next();				
-				System.out.println("1.일정조회 2.마이페이지 3.로그아웃");
+				System.out.println("1.일정조회 2.로그아웃");
 			}
 			
 			int btn2 = scanner.nextInt();
 			
 			if(btn2 == 1) {
-				such();
+				suchMemRead();
+				suchPtRead();
+				suchBodyRead();
 			} else if(btn2 == 2) {
-				management();
-			} else if(btn2 == 3) {
 				break;
 			}
 		}
 		
+	}
+	
+	
+	
+	// 로그인정보 넘겨서 저장
+	public void loginSave(String login_name) {
+		suchcontrol.login_save(login_name);
+		return;
 	}
 	
 	//create start
@@ -292,7 +309,6 @@ public class View {
 	public boolean bodyReservationCreate( String body_name, String body_date, String body_place, String body_comment) {
 		return bodycontrol.create( body_name, body_date, body_place, body_comment);
 	}
-	
 	
 	
 	
@@ -365,21 +381,43 @@ public class View {
 			System.out.print(dto.getPt_phone()+"  ");
 			System.out.println(dto.getPt_date()+"\t");
 		}	
+	}	
+	public void registRead() {
+		ArrayList<RegistDTO> regist_list = control.regist_read();
+		for(RegistDTO dto : regist_list) {
+			login_name = dto.getRegist_name();
+		}
 	}
-	public void such() {
-		ArrayList<SuchDTO> such_list = suchcontrol.read();
-		for(SuchDTO dto : such_list) {
-			System.out.println("회원권");
+	public void suchMemRead() {
+		ArrayList<MembershipDTO> such_mem_list = suchcontrol.mem_read();
+		for(MembershipDTO dto : such_mem_list) {
+			System.out.println("=============================");
+			System.out.println("☆ " + login_name + "님의 페이지 ☆");
+			System.out.println("=============================");
+			System.out.println("※ 회원권");
 			System.out.print("시작일 : ");
 			System.out.println(dto.getMem_start());
 			System.out.print("종료일 : ");
 			System.out.println(dto.getMem_end());
-			System.out.println("PT");
+		}
+	}
+	public void suchPtRead() {
+		ArrayList<PtMemberDTO> such_pt_list = suchcontrol.pt_read();
+		for(PtMemberDTO dto : such_pt_list) {
+			System.out.println("=============================");
+			System.out.println("※ PT");
 			System.out.print("시작일 : ");
-			System.out.print(dto.getPt_date()+"\t");
-			System.out.println("바디프로필");
-			System.out.println("예약일 :");
+			System.out.println(dto.getPt_date());
+		}
+	}
+	public void suchBodyRead() {
+		ArrayList<BodyDTO> such_body_list = suchcontrol.body_read();
+		for(BodyDTO dto : such_body_list) {
+			System.out.println("=============================");
+			System.out.println("※ 바디프로필");
+			System.out.print("예약일 :");
 			System.out.println(dto.getBody_date());
+			System.out.println("=============================");
 		}
 	}
 	

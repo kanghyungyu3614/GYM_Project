@@ -3,13 +3,15 @@ package GYM.controller;
 import java.util.ArrayList;
 
 import GYM.model.Dao.RegistDAO;
+import GYM.model.Dao.SuchDAO;
+import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.RegistDTO;
 
 public class Controller {
 	
-	public boolean regist(String id, String pw) {
+	public boolean regist(String name, String id, String pw) {
 			// 매개변수 3개 --> 1개의 dto로 선언
-		RegistDTO dto = new RegistDTO(0, id, pw);
+		RegistDTO dto = new RegistDTO(0, name, id, pw);
 
 		return RegistDAO.getInstance().regist(dto);
 	}
@@ -32,6 +34,10 @@ public class Controller {
 		
 		return RegistDAO.getInstance().login(id, pw);
 		
+	}
+	
+	public ArrayList<RegistDTO> regist_read(){
+		return RegistDAO.getInstance().read();
 	}
 	
 }

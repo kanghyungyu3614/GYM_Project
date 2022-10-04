@@ -38,12 +38,13 @@ public class RegistDAO {
 	
 	public boolean regist( RegistDTO dto ) {
 		
-		String sql = "insert into gym_regist values( null, ?, ? )";
+		String sql = "insert into gym_regist values( null, ?, ?, ? )";
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, dto.getRegist_id());
-			ps.setString(2, dto.getRegist_pw());
+			ps.setString(1, dto.getRegist_name());
+			ps.setString(2, dto.getRegist_id());
+			ps.setString(3, dto.getRegist_pw());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -58,7 +59,8 @@ public class RegistDAO {
 					RegistDTO result = new RegistDTO(
 					rs.getInt(1),
 					rs.getString(2),
-					rs.getString(3));
+					rs.getString(3),
+					rs.getString(4));
 					list.add(result);
 					
 					if(!result.getRegist_id().equals(null)) {
@@ -77,6 +79,24 @@ public class RegistDAO {
 		}
 		
 	}
+	
+	public ArrayList<RegistDTO> read(){
+    	ArrayList<RegistDTO> list = new ArrayList<>();
+    	String sql = "select * from gym_regist";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();	
+			while(rs.next()) {
+				RegistDTO regist_dto = new RegistDTO(
+				rs.getInt(1),
+				rs.getString(2),
+				rs.getString(3),
+				rs.getString(4));
+				list.add(regist_dto);
+			}
+			return list;
+		} catch (Exception e) { return list; }
+    }
 	
     public int login(String id, String pw){
     	ArrayList<RegistDTO> list = new ArrayList<>();
@@ -107,7 +127,8 @@ public class RegistDAO {
 						RegistDTO result = new RegistDTO(
 						rs.getInt(1),
 						rs.getString(2),
-						rs.getString(3));
+						rs.getString(3),
+						rs.getString(4));
 						list.add(result);
 						
 						if(result.getRegist_id().equals("admin") && result.getRegist_pw().equals(pw)) {
