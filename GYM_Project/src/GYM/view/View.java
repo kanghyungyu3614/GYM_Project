@@ -559,10 +559,10 @@ public class View {
 	
 	public void suchMemRead() {
 		ArrayList<MembershipDTO> such_mem_list = suchcontrol.mem_read();
+		System.out.println("=============================");
+		System.out.println("☆ " + login_name + "님의 페이지 ☆");
+		System.out.println("=============================");
 		for(MembershipDTO dto : such_mem_list) {
-			System.out.println("=============================");
-			System.out.println("☆ " + login_name + "님의 페이지 ☆");
-			System.out.println("=============================");
 			System.out.println("※ 회원권");
 			System.out.print("시작일 : ");
 			System.out.println(dto.getMem_start());
@@ -572,8 +572,8 @@ public class View {
 	}
 	public void suchPtRead() {
 		ArrayList<PtMemberDTO> such_pt_list = suchcontrol.pt_read();
+		System.out.println("=============================");
 		for(PtMemberDTO dto : such_pt_list) {
-			System.out.println("=============================");
 			System.out.println("※ PT");
 			System.out.print("시작일 : ");
 			System.out.println(dto.getPt_date());
@@ -581,13 +581,13 @@ public class View {
 	}
 	public void suchBodyRead() {
 		ArrayList<BodyDTO> such_body_list = suchcontrol.body_read();
+		System.out.println("=============================");
+		System.out.println("※ 바디프로필");
 		for(BodyDTO dto : such_body_list) {
-			System.out.println("=============================");
-			System.out.println("※ 바디프로필");
 			System.out.print("예약일 :");
 			System.out.println(dto.getBody_date());
-			System.out.println("=============================");
 		}
+		System.out.println("=============================");
 	}
 	//read end
 }
