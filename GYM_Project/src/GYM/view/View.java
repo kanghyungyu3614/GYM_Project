@@ -12,7 +12,6 @@ import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
 import GYM.model.Dto.RegistDTO;
-import GYM.model.Dto.SuchDTO;
 
 public class View {
 	
@@ -74,7 +73,7 @@ public class View {
 				pw = scanner.next();
 				
 				int result = login(id, pw);
-				registRead();
+				registRead(id);
 				loginSave(login_name);
 				if(result == 1) {
 					System.out.println("로그인에 성공했습니다!!");
@@ -381,9 +380,9 @@ public class View {
 			System.out.print(dto.getPt_phone()+"  ");
 			System.out.println(dto.getPt_date()+"\t");
 		}	
-	}	
-	public void registRead() {
-		ArrayList<RegistDTO> regist_list = control.regist_read();
+	}
+	public void registRead(String id) {
+		ArrayList<RegistDTO> regist_list = control.regist_read(id);
 		for(RegistDTO dto : regist_list) {
 			login_name = dto.getRegist_name();
 		}
@@ -415,7 +414,9 @@ public class View {
 		for(BodyDTO dto : such_body_list) {
 			System.out.println("=============================");
 			System.out.println("※ 바디프로필");
-			System.out.print("예약일 :");
+			System.out.print("장소 : ");
+			System.out.println(dto.getBody_place());
+			System.out.print("예약일 : ");
 			System.out.println(dto.getBody_date());
 			System.out.println("=============================");
 		}

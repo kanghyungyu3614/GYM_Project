@@ -36,8 +36,8 @@ public class Controller {
 		
 	}
 	
-	public ArrayList<RegistDTO> regist_read(){
-		return RegistDAO.getInstance().read();
+	public ArrayList<RegistDTO> regist_read(String id){
+		return RegistDAO.getInstance().read(id);
 	}
 	
 }
