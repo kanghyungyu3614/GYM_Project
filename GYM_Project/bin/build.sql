@@ -26,7 +26,7 @@ CREATE TABLE pt_member (
   pt_name varchar(10),
   pt_phone varchar(15),
   pt_date date
-);
+); 
 
 CREATE TABLE body (
   body_no int PRIMARY KEY AUTO_INCREMENT,
@@ -41,5 +41,14 @@ CREATE TABLE member_check (
   ck_name varchar(10),
   ck_date datetime
 );
+
+CREATE TABLE record_exercise (
+  rd_no int PRIMARY KEY AUTO_INCREMENT,
+  rd_name varchar(10),
+  rd_date datetime ,
+  rd_routine varchar(30),
+  rd_weight varchar(10)
+);
+
 
 select * from gym_regist;
