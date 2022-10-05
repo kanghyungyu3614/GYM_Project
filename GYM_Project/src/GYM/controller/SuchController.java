@@ -6,12 +6,11 @@ import GYM.model.Dao.SuchDAO;
 import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
-import GYM.model.Dto.SuchDTO;
 
 public class SuchController {
 	
-	public void login_save(String login_id) {
-		SuchDAO.getInstance().login_save(login_id);
+	public void login_save(String login_name) {
+		SuchDAO.getInstance().login_save(login_name);
 		return;
 	}
 

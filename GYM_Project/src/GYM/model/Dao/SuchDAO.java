@@ -16,7 +16,8 @@ public class SuchDAO {
 	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	private String login_id;
+<<<<<<< HEAD
+	private String login_name;
 	
 	private static SuchDAO dao = new SuchDAO();
 	
@@ -35,36 +36,17 @@ public class SuchDAO {
 	
 	// 싱글톤
 	public static SuchDAO getInstance() {return dao;}
-	
-	public void login_save(String login_id) {
-		this.login_id = login_id;
+		
+	public void login_save(String login_name) {
+		this.login_name = login_name;
 		return;
 	}
 	
-	// 검색테이블 생성
-	public boolean create(SuchDTO such_dto) {
-		String sql = "insert into such values(null,null,?,?,null,?,null,?)";
-		try {
-			ps = con.prepareStatement(sql);
-			ps.setInt(1, such_dto.getSuch_no());
-			ps.setInt(2, such_dto.getMem_no());
-			ps.setString(3, such_dto.getMem_start());
-			ps.setString(4, such_dto.getMem_end());
-			ps.setInt(5, such_dto.getPt_no());
-			ps.setString(6, such_dto.getPt_date());
-			ps.setInt(7, such_dto.getBody_no());
-			ps.setString(8, such_dto.getBody_date());
-			ps.executeUpdate();
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
 	
 	// 출력
     public ArrayList<MembershipDTO> mem_read(){
     	ArrayList<MembershipDTO> list = new ArrayList<>();
-    	String sql = "select * from membership where mem_name = " + "'" + login_id + "'";
+    	String sql = "select * from membership where mem_name = " + "'" + login_name + "'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();	
@@ -83,7 +65,7 @@ public class SuchDAO {
     
     public ArrayList<PtMemberDTO> pt_read(){
     	ArrayList<PtMemberDTO> list = new ArrayList<>();
-    	String sql = "select * from pt_member where pt_name = " + "'" + login_id + "'";
+    	String sql = "select * from pt_member where pt_name = " + "'" + login_name + "'";
     	try {
     		ps = con.prepareStatement(sql);
     		rs = ps.executeQuery();	
@@ -99,9 +81,11 @@ public class SuchDAO {
     	} catch (Exception e) { return list; }
     }
     
+    
+    
     public ArrayList<BodyDTO> body_read(){
     	ArrayList<BodyDTO> list = new ArrayList<>();
-    	String sql = "select * from body where body_name = " + "'" + login_id + "'";
+    	String sql = "select * from body where body_name = " + "'" + login_name + "'";
     	try {
     		ps = con.prepareStatement(sql);
     		rs = ps.executeQuery();	

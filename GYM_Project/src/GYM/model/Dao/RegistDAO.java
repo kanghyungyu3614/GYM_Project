@@ -80,9 +80,9 @@ public class RegistDAO {
 		
 	}
 	
-	public ArrayList<RegistDTO> read(){
+	public ArrayList<RegistDTO> read(String id){
     	ArrayList<RegistDTO> list = new ArrayList<>();
-    	String sql = "select * from gym_regist";
+    	String sql = "select * from gym_regist where regist_id = " + "'" + id + "'";
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();	

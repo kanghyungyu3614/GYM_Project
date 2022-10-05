@@ -14,7 +14,6 @@ import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
 import GYM.model.Dto.RegistDTO;
-import GYM.model.Dto.SuchDTO;
 
 public class View {
 	
@@ -24,13 +23,12 @@ public class View {
 	MembershipController memcontrol = new MembershipController();
 	PtMemberController ptmemcontrol= new PtMemberController();
 	BodyController bodycontrol = new BodyController();
-	CheckController checkcontrol = new CheckController();
 	SuchController suchcontrol = new SuchController();
+	CheckController checkcontrol = new CheckController();
 	String name;
 	String id;
 	String pw;
 	String login_name;
-
 	
 	//컨트롤러 추가 끝
 	public static void main(String[] args) {
@@ -78,7 +76,7 @@ public class View {
 				pw = scanner.next();
 				
 				int result = login(id, pw);
-				registRead();
+				registRead(id);
 				loginSave(login_name);
 				if(result == 1) {
 					System.out.println("로그인에 성공했습니다!!");
@@ -438,37 +436,7 @@ public class View {
 	public boolean checkCreate(String check_name, String check_date) {
 		return checkcontrol.create(check_name,check_date);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	//create end
 	
 	
@@ -527,8 +495,8 @@ public class View {
 		}	
 	}	
 	
-	public void registRead() {
-		ArrayList<RegistDTO> regist_list = control.regist_read();
+	public void registRead(String id) {
+		ArrayList<RegistDTO> regist_list = control.regist_read(id);
 		for(RegistDTO dto : regist_list) {
 			login_name = dto.getRegist_name();
 		}
@@ -554,7 +522,8 @@ public class View {
 			System.out.print(dto.getCk_no()+"\t");
 			System.out.print(dto.getCk_name()+"\t");
 			System.out.println(dto.getCk_date()+"\t");
-		}	
+		}
+
 	}
 	
 	public void suchMemRead() {
@@ -584,6 +553,8 @@ public class View {
 		System.out.println("=============================");
 		System.out.println("※ 바디프로필");
 		for(BodyDTO dto : such_body_list) {
+			System.out.print("장소 : ");
+			System.out.println(dto.getBody_place());
 			System.out.print("예약일 :");
 			System.out.println(dto.getBody_date());
 		}

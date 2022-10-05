@@ -98,16 +98,5 @@ public class BodyDAO {
 		}
     }
 	
-	
-	 
-	
-	
-
-	
-	
-	
-	
-	
-	
 } // class end
  
