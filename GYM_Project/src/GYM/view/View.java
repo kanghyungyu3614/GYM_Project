@@ -8,11 +8,13 @@ import GYM.controller.CheckController;
 import GYM.controller.Controller;
 import GYM.controller.MembershipController;
 import GYM.controller.PtMemberController;
+import GYM.controller.RecordController;
 import GYM.model.Dto.CheckDTO;
 import GYM.controller.SuchController;
 import GYM.model.Dto.BodyDTO;
 import GYM.model.Dto.MembershipDTO;
 import GYM.model.Dto.PtMemberDTO;
+import GYM.model.Dto.RecordDTO;
 import GYM.model.Dto.RegistDTO;
 
 public class View {
@@ -25,6 +27,7 @@ public class View {
 	BodyController bodycontrol = new BodyController();
 	SuchController suchcontrol = new SuchController();
 	CheckController checkcontrol = new CheckController();
+	RecordController recordController = new RecordController();
 	String name;
 	String id;
 	String pw;
@@ -408,7 +411,7 @@ public class View {
 			} else if(btn2 == 2) {
 				mypage();
 			} else if(btn2 == 3) {
-				
+				record();	// 운동기록
 			} else if(btn2 == 4) {
 				break;
 			}
@@ -428,8 +431,43 @@ public class View {
 
 		}
 	}
-	
-	
+	// record 운동 기록  start
+	void record() {
+		while(true) {
+			System.out.println("1.운동기록추가 2.운동기록조회 3.뒤로가기");
+			int btn7 = scanner.nextInt();
+			
+			if(btn7 == 1) {
+				System.out.println("이름을 입력해주세요. : ");
+				String record_name = scanner.next();
+				System.out.println("날짜을 입력해주세요. : ");
+				String record_date = scanner.next();
+				System.out.println("체지방을 입력해주세요. : ");
+				String record_weight = scanner.next();
+				System.out.println("오늘의 루틴을 입력해주세요.. : ");
+				String record_routine = scanner.next();
+				
+				
+				recordController.create(record_name, record_date, record_routine, record_weight);
+			} else if (btn7 == 2) {			
+				call();
+			} else if (btn7 == 3) {
+				break;
+			}
+			
+		}
+		
+		
+		
+	}
+	// 운동기록 end 
+	void call() {
+		System.out.println("==========================================================");
+		System.out.println("회원번호\t이름\t날짜\t\t\t몸무게\t루틴");
+		System.out.println("==========================================================");
+		
+		RecordRead();
+	}
 	// 로그인정보 넘겨서 저장
 	public void loginSave(String login_name) {
 		suchcontrol.login_save(login_name);
@@ -452,7 +490,11 @@ public class View {
 	public boolean checkCreate(String check_name, String check_date) {
 		return checkcontrol.create(check_name,check_date);
 	}
-
+	// 운동관리 
+	public boolean recordCreate(String rd_name, String rd_date, String rd_routine, String rd_weight ) {
+		return recordController.create(rd_name, rd_date, rd_routine, rd_weight);
+	}
+	
 	//create end
 	
 	
@@ -576,5 +618,17 @@ public class View {
 		}
 		System.out.println("=============================");
 	}
+	
+	public void RecordRead() {
+		ArrayList<RecordDTO> record_list = recordController.read();
+		for(RecordDTO dto : record_list ) {
+			System.out.print(dto.getRd_no()+"\t");
+			System.out.print(dto.getRd_name()+"\t");
+			System.out.print(dto.getRd_date()+"\t");
+			System.out.print(dto.getRd_weight()+"\t");
+			System.out.println(dto.getRd_routine());
+		}
+	}
+	
 	//read end
 }

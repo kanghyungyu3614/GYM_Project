@@ -42,4 +42,13 @@ CREATE TABLE member_check (
   ck_date datetime
 );
 
+CREATE TABLE record_exercise (
+  rd_no int PRIMARY KEY AUTO_INCREMENT,
+  rd_name varchar(10),
+  rd_date datetime ,
+  rd_routine varchar(30),
+  rd_weight varchar(10)
+);
+
+
 select * from gym_regist;
