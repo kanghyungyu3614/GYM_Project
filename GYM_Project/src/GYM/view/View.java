@@ -32,6 +32,7 @@ public class View {
 	String id;
 	String pw;
 	String login_name;
+	String login_id;
 	
 	//컨트롤러 추가 끝
 	public static void main(String[] args) {
@@ -80,7 +81,8 @@ public class View {
 				
 				int result = login(id, pw);
 				registRead(id);
-				loginSave(login_name);
+				loginSave(login_name, login_id);
+				idSave(login_id);
 				if(result == 1) {
 					System.out.println("로그인에 성공했습니다!!");
 					user();
@@ -217,7 +219,7 @@ public class View {
 				
 				while(!scanner.hasNextInt()) { 
 					scanner.next();				
-					System.out.println("1.로그인");
+					System.out.println("1.수정하기 2.삭제하기 3.뒤로가기");
 				}
 				
 				int btn5 = scanner.nextInt();
@@ -314,7 +316,7 @@ public class View {
 				
 				while(!scanner.hasNextInt()) { 
 					scanner.next();				
-					System.out.println("1.로그인");
+					System.out.println("1.수정하기 2.삭제하기 3.뒤로가기");
 				}
 				
 				int btn5 = scanner.nextInt();
@@ -358,8 +360,7 @@ public class View {
 				}
 			} else if(btn4 == 4) {
 				break;
-			}
-			else {
+			} else if(btn4 == 5) {
 			   System.out.println("출결관리페이지입니다.");
 			   CheckRead();
 			   
@@ -367,7 +368,7 @@ public class View {
 				
 				while(!scanner.hasNextInt()) { 
 					scanner.next();				
-					System.out.println("1.로그인");
+					System.out.println("1.추가하기 2.뒤로가기");
 				}
 				
 				int btn5 = scanner.nextInt();
@@ -405,6 +406,9 @@ public class View {
 			int btn2 = scanner.nextInt();
 			
 			if(btn2 == 1) {
+				registRead(id);
+				loginSave(login_name, login_id);
+				idSave(login_id);
 				suchMemRead();
 				suchPtRead();
 				suchBodyRead();
@@ -421,13 +425,63 @@ public class View {
 	void mypage() {
 
 		while(true) {
-
+			System.out.println("1.회원수정 2.회원탈퇴 3.뒤로가기");
+			
 			while(!scanner.hasNextInt()) { 
-				scanner.next();				
-				System.out.println("1.");
+				scanner.next();
+				System.out.println("1.회원수정 2.회원탈퇴 3.뒤로가기");
 			}
 
-			System.out.println("");
+			int btn6 = scanner.nextInt();
+			
+			if(btn6 == 1) {
+				
+				System.out.println("이름 : ");
+				String change_name = scanner.next();
+				System.out.println("아이디 : ");
+				String change_id = scanner.next();
+				System.out.println("패스워드 : ");
+				String change_pw = scanner.next();
+				
+				boolean result = changeRegist(change_name, change_id, change_pw);
+				
+				if(result == true) {
+					System.out.println("회원수정 완료!!");
+					loginSave(change_id, change_pw);
+					registRead(change_id);
+					id = change_id;
+				} else if(result == false){
+					System.out.println("회원수정 실패!!");
+				}
+				
+			} else if(btn6 == 2) {
+				
+				System.out.println("1.회원탈퇴 2.뒤로가기");
+				
+				while(!scanner.hasNextInt()) { 
+					scanner.next();
+					System.out.println("1.회원탈퇴 2.뒤로가기");
+				}
+
+				int btn8 = scanner.nextInt();
+				
+				if(btn8 == 1) {
+					boolean result = deleteRegist(id);
+					if(result == true) {
+						System.out.println("회원삭제가 완료되었습니다.");
+						menu();
+					} else if(result == false) {
+						System.out.println("회원삭제가 실패하였습니다.");
+					}
+				} else if(btn8 == 2) {
+					while(true) {
+						break;
+					}
+				}
+				
+			} else if(btn6 == 3) {
+				break;
+			}
 
 		}
 	}
@@ -469,8 +523,12 @@ public class View {
 		RecordRead();
 	}
 	// 로그인정보 넘겨서 저장
-	public void loginSave(String login_name) {
-		suchcontrol.login_save(login_name);
+	public void loginSave(String login_name, String login_id) {
+		suchcontrol.login_save(login_name, login_id);
+		return;
+	}
+	public void idSave(String login_id) {
+		control.id_save(login_id);
 		return;
 	}
 	
@@ -510,6 +568,10 @@ public class View {
 	public boolean bodyUpdate(int body_no,String body_name, String body_date, String body_place, String body_comment) {
 		return bodycontrol.update(body_no, body_name, body_date, body_place, body_comment);
 	}
+	
+	public boolean changeRegist(String change_name, String change_id, String change_pw) {
+		return control.update(change_name, change_id, change_pw);
+	}
 	// update end
 	
 	
@@ -525,6 +587,10 @@ public class View {
 	
 	public boolean bodyDelete(int body_no) {
 		return bodycontrol.delete(body_no);
+	}
+	
+	public boolean deleteRegist(String id) {
+		return control.delete(id);
 	}
 	// delete end
 	
@@ -556,6 +622,7 @@ public class View {
 	public void registRead(String id) {
 		ArrayList<RegistDTO> regist_list = control.regist_read(id);
 		for(RegistDTO dto : regist_list) {
+			login_id = dto.getRegist_id();
 			login_name = dto.getRegist_name();
 		}
 	}

@@ -17,6 +17,7 @@ public class SuchDAO {
 	private PreparedStatement ps;
 	private ResultSet rs;
 	private String login_name;
+	private String login_id;
 	
 	private static SuchDAO dao = new SuchDAO();
 	
@@ -36,8 +37,9 @@ public class SuchDAO {
 	// 싱글톤
 	public static SuchDAO getInstance() {return dao;}
 		
-	public void login_save(String login_name) {
+	public void login_save(String login_name, String login_id) {
 		this.login_name = login_name;
+		this.login_id = login_id;
 		return;
 	}
 	

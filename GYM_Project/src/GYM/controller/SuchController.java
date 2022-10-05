@@ -9,8 +9,8 @@ import GYM.model.Dto.PtMemberDTO;
 
 public class SuchController {
 	
-	public void login_save(String login_name) {
-		SuchDAO.getInstance().login_save(login_name);
+	public void login_save(String login_name, String login_id) {
+		SuchDAO.getInstance().login_save(login_name, login_id);
 		return;
 	}
 
