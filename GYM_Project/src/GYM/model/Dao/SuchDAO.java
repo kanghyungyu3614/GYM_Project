@@ -16,7 +16,6 @@ public class SuchDAO {
 	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
-<<<<<<< HEAD
 	private String login_name;
 	
 	private static SuchDAO dao = new SuchDAO();
