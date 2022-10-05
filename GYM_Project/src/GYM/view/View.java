@@ -392,11 +392,11 @@ public class View {
 	void user() {
 		
 		while(true) {
-			System.out.println("1.일정조회 2.로그아웃");
+			System.out.println("1.일정조회 2.마이페이지 3.운동기록 3.로그아웃");
 			
 			while(!scanner.hasNextInt()) { 
 				scanner.next();				
-				System.out.println("1.일정조회 2.로그아웃");
+				System.out.println("1.일정조회 2.마이페이지 3.운동기록 3.로그아웃");
 			}
 			
 			int btn2 = scanner.nextInt();
@@ -406,12 +406,28 @@ public class View {
 				suchPtRead();
 				suchBodyRead();
 			} else if(btn2 == 2) {
+				mypage();
+			} else if(btn2 == 3) {
 				break;
 			}
 		}
 		
 	}
 	
+	void mypage() {
+		
+		while(true) {
+			
+			while(!scanner.hasNextInt()) { 
+				scanner.next();				
+				System.out.println("1.");
+			}
+			
+			System.out.println("");
+			
+		}
+		
+	}
 	
 	
 	// 로그인정보 넘겨서 저장
