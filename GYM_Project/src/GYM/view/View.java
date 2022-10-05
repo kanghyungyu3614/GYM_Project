@@ -656,8 +656,8 @@ public class View {
 		System.out.println("=============================");
 		System.out.println("☆ " + login_name + "님의 페이지 ☆");
 		System.out.println("=============================");
+		System.out.println("※ 회원권");
 		for(MembershipDTO dto : such_mem_list) {
-			System.out.println("※ 회원권");
 			System.out.print("시작일 : ");
 			System.out.println(dto.getMem_start());
 			System.out.print("종료일 : ");
@@ -667,8 +667,8 @@ public class View {
 	public void suchPtRead() {
 		ArrayList<PtMemberDTO> such_pt_list = suchcontrol.pt_read();
 		System.out.println("=============================");
+		System.out.println("※ PT");
 		for(PtMemberDTO dto : such_pt_list) {
-			System.out.println("※ PT");
 			System.out.print("시작일 : ");
 			System.out.println(dto.getPt_date());
 		}
