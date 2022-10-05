@@ -56,7 +56,7 @@ public class RecordDTO {
 		return rd_weight;
 	}
 
-	public void setRd_weight(String rd_weight) {
+	public void setRd_weight(String rd_weight) { 
 		this.rd_weight = rd_weight;
 	}
 	

@@ -17,7 +17,7 @@ CREATE TABLE membership (
   mem_no int PRIMARY KEY AUTO_INCREMENT,
   mem_name varchar(10),
   mem_start date,
-  mem_end date,
+  mem_end date, 
   mem_comment varchar(15)
 );
 

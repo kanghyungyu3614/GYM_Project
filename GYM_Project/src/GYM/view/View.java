@@ -627,7 +627,7 @@ public class View {
 			System.out.print(dto.getRd_date()+"\t");
 			System.out.print(dto.getRd_weight()+"\t");
 			System.out.println(dto.getRd_routine());
-		}
+		} 
 	}
 	
 	//read end
